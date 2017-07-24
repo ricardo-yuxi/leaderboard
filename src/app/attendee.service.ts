@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { Attendee } from './attendee.model';
+import { Homework } from './homework.model';
 
 @Injectable()
 export class AttendeeService {
@@ -16,6 +17,18 @@ export class AttendeeService {
       .get(this.attendeesUrl)
       .map(data => data.json().data as Attendee[])
       .do(data => console.log(data));
+  }
+
+  calculateAverageGrade(attendees) {
+    attendees.map(attendee => {
+      let sum = 0;
+      attendee.homeworks.map(homework => {
+        let note = homework.note;
+        sum += note;
+      });
+      let average = (sum / attendee.homeworks.length);
+      attendee.average_grade = average;
+    });
   }
 
 }

@@ -4,6 +4,7 @@ export class Attendee {
   name: string;
   photo: string;
   homeworks: Homework[];
+  average_grade: number;
   delivered_homeworks: number;
   missing_homeworks: number;
   updated_at: string;

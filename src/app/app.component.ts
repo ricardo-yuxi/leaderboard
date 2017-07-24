@@ -20,6 +20,13 @@ export class AppComponent implements OnInit {
 
   getAttendees() {
     this.attendeeService.getAttendees()
-      .subscribe(attendees => this.attendees = attendees);
+      .subscribe(attendees => {
+        this.attendees = attendees;
+        this.averageGrade();
+      });
+  }
+
+  averageGrade() {
+    this.attendeeService.calculateAverageGrade(this.attendees);
   }
 }
