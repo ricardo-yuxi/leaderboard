@@ -1,5 +1,15 @@
 <h1 fxLayoutAlign="center">{{ title }}</h1>
-<div fxFlexFill
+<div class="container" fxFlexFill
      fxLayout="column"
-    fxLayoutAlign="center center">
+     fxLayoutAlign="center center">
+  <h3>Attendees</h3>
+  <ul>
+    <li *ngFor="let attendee of attendees">
+      <span>{{ attendee.id }}: </span>
+      <span>{{ attendee.name }}</span>
+      <span>{{ attendee.photo }}</span>
+      <span>Average grade:</span>
+      <span>{{ attendee.photo }}</span>
+    </li>
+  </ul>
 </div>
