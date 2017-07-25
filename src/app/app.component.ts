@@ -10,7 +10,7 @@ import { Attendee } from './attendee.model';
 })
 export class AppComponent implements OnInit {
   title = 'Leaderboard';
-  attendees: Attendee[] = [];
+  rows: Attendee[] = [];
 
   constructor(private attendeeService: AttendeeService) {}
 
@@ -20,13 +20,13 @@ export class AppComponent implements OnInit {
 
   getAttendees() {
     this.attendeeService.getAttendees()
-      .subscribe(attendees => {
-        this.attendees = attendees;
+      .subscribe(rows => {
+        this.rows = rows;
         this.averageGrade();
       });
   }
 
   averageGrade() {
-    this.attendeeService.calculateAverageGrade(this.attendees);
+    this.attendeeService.calculateAverageGrade(this.rows);
   }
 }

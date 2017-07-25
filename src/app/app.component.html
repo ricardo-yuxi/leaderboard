@@ -1,15 +1,42 @@
 <h1 fxLayoutAlign="center">{{ title }}</h1>
-<div class="container" fxFlexFill
-     fxLayout="column"
-     fxLayoutAlign="center center">
-  <h3>Attendees</h3>
-  <ul>
-    <li *ngFor="let attendee of attendees">
-      <span>{{ attendee.id }}: </span>
-      <span>{{ attendee.name }}</span>
-      <span>{{ attendee.photo }}</span>
-      <span>Average grade: {{ attendee.average_grade }}</span>
-      <span>{{ attendee.photo }}</span>
-    </li>
-  </ul>
+<div fxFlexFill fxLayout="column" fxLayoutAlign="space-around">
+  <ngx-datatable #table class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
+    [limit]="10" (activate)="onActivate($event)">
+    <ngx-datatable-column name="Full Name" [width]="300">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.name}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Photo" [width]="400">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.picture}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Average Grade" [width]="300">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.average_grade}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Delivered Homeworks" [width]="300">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.homeworks_delivered}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Missing Homeworks" [width]="300">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.homeworks_missing}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Last updated" [width]="300">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.last_updated}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="Delete User" [width]="300">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <button class="delete" (click)="delete(row); $event.stopPropagation()">x</button>
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
 </div>
