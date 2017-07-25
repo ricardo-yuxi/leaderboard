@@ -14,41 +14,5 @@
     [rowHeight]="'auto'"
     [rows]="rows"
     [limit]="10" (activate)="onActivate($event)">
-    <ngx-datatable-column name="Full Name" [width]="250">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.name}}
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Photo" [width]="300">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.photo}}
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Average Grade" [width]="300">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.average_grade}}
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Delivered Homeworks" [width]="300">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.delivered_homeworks}}
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Missing Homeworks" [width]="300">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.missing_homeworks}}
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Last updated" [width]="300">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{row.updated_at | date }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="Delete User" [width]="300">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        <button class="delete" (click)="delete(row); $event.stopPropagation()">x</button>
-      </ng-template>
-    </ngx-datatable-column>
   </ngx-datatable>
 </div>

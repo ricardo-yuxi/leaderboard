@@ -17,7 +17,6 @@ export class AppComponent implements OnInit {
   columns = [
     { prop: 'name' },
     { prop: 'photo' },
-    { prop: 'homeworks' },
     { prop: 'average_grade' },
     { prop: 'delivered_homeworks' },
     { prop: 'missing_homeworks' },
