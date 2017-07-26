@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Attendee } from "app/attendee.model";
 import { DatatableComponent } from "@swimlane/ngx-datatable/release";
 import { AttendeeService } from "app/attendee.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'attendees-datatable',
@@ -22,10 +23,18 @@ export class AttendeesDatatableComponent implements OnInit {
   ];
 
   @ViewChild(DatatableComponent) table: DatatableComponent;
-  constructor(private attendeeService: AttendeeService) {}
+  constructor(
+    private router: Router,
+    private attendeeService: AttendeeService
+  ) {}
 
   ngOnInit() {
     this.getAttendees();
+  }
+
+  gotoDetail(event) {
+    console.log(event.row);
+    this.router.navigate(['/attendees', event.row.id]);
   }
 
   getAttendees() {

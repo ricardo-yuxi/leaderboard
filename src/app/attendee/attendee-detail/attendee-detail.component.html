@@ -1,0 +1,23 @@
+<div *ngIf="attendee">
+  <h2>{{attendee.name}} details!</h2>
+  <div>
+    <label>name: </label>
+    <input [(ngModel)]="attendee.name" placeholder="name"/>
+  </div>
+  <div>
+    <label>Homeworks: </label>
+    <br>
+    <label>1</label>    
+    <input [(ngModel)]="attendee.homeworks[0].note" placeholder="name"/>
+    <label>2</label>    
+    <input [(ngModel)]="attendee.homeworks[1].note" placeholder="name"/>
+    <label>3</label>    
+    <input [(ngModel)]="attendee.homeworks[2].note" placeholder="name"/>
+    <label>4</label>    
+    <input [(ngModel)]="attendee.homeworks[3].note" placeholder="name"/>
+    <label>5</label>    
+    <input [(ngModel)]="attendee.homeworks[4].note" placeholder="name"/>
+  </div>
+  <button (click)="goBack()">Back</button>
+  <button (click)="save()">Save</button>
+</div>

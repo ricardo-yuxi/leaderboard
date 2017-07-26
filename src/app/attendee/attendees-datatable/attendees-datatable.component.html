@@ -13,7 +13,9 @@
     [footerHeight]="50"
     [rowHeight]="'auto'"
     [rows]="attendees"
-    [limit]="10" (activate)="onActivate($event)">
+    [limit]="10"
+    title="Click to show Attendee"
+    (activate)="gotoDetail($event)">
     <ngx-datatable-column name="Name" [width]="80"></ngx-datatable-column>
     <ngx-datatable-column name="Photo" [width]="300"></ngx-datatable-column>
     <ngx-datatable-column name="Average grade" prop="average_grade"></ngx-datatable-column>

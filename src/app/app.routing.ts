@@ -1,9 +1,10 @@
-import { NgModule } from "@angular/core";
+import { NgModule }             from "@angular/core";
 import { RouterModule, Routes } from '@angular/router';
+import { AttendeesDatatableComponent } from './attendee/attendees-datatable/attendees-datatable.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/attendees', pathMatch: 'full' },
-  { path: 'attendees', loadChildren: './attendee/attendee.module#AttendeeModule' }
+  { path: 'attendees', component: AttendeesDatatableComponent }
 ];
 
 @NgModule({

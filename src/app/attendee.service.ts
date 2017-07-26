@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http } from "@angular/http";
+import { Headers, Http } from "@angular/http";
 import { Observable } from "rxjs/Observable";
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 import { Attendee } from './attendee.model';
 import { Homework } from './homework.model';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AttendeeService {
   private attendeesUrl = 'api/attendees';
+  private headers = new Headers({'Content-Type': 'application/json'});
 
   constructor(private http: Http) { }
 
@@ -17,6 +18,21 @@ export class AttendeeService {
       .get(this.attendeesUrl)
       .map(data => data.json().data as Attendee[])
       .do(data => console.log(data));
+  }
+
+  getAttendee(id: number): Observable<Attendee> {
+    const url = `${this.attendeesUrl}/${id}`;
+    return this.http
+      .get(url)
+      .map(data => data.json().data as Attendee);
+  }
+
+  update(attendee: Attendee): Observable<Attendee> {
+    const url = `${this.attendeesUrl}/${attendee.id}`;
+    let body = JSON.stringify(attendee);
+    return this.http
+      .put(url, body, {headers: this.headers})
+      .map(() => attendee);
   }
 
   calculateAverageGrade(attendees) {

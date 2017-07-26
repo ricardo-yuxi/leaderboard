@@ -5,15 +5,21 @@ import { AttendeesDatatableComponent } from './attendees-datatable/attendees-dat
 import { NgxDatatableModule } from "@swimlane/ngx-datatable/release";
 import { AttendeeService } from "app/attendee.service";
 import { AttendeeRouting } from './attendee.routing';
+import { AttendeeDetailComponent } from './attendee-detail/attendee-detail.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     NgxDatatableModule,
     MaterialModule,
     AttendeeRouting
   ],
-  declarations: [AttendeesDatatableComponent],
+  declarations: [
+    AttendeesDatatableComponent,
+    AttendeeDetailComponent
+  ],
   providers: [AttendeeService],
   exports: [AttendeesDatatableComponent]
 })
