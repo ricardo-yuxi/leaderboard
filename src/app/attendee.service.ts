@@ -35,12 +35,12 @@ export class AttendeeService {
       .map(() => attendee);
   }
 
-  calculateAverageGrade(attendees) {
+  calculateAverageGrade(attendees: Attendee[]) {
     attendees.map(attendee => {
       let sum = 0;
       attendee.homeworks.map(homework => {
         let note = homework.note;
-        sum += note;
+        sum += +note;
       });
       let average = (sum / attendee.homeworks.length);
       attendee.average_grade = average;

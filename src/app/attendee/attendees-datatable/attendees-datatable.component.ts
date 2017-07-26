@@ -44,7 +44,6 @@ export class AttendeesDatatableComponent implements OnInit {
         this.temp = [...attendees];
         // push our inital complete list
         this.attendees = attendees;
-
         this.averageGrade();
       });
   }
