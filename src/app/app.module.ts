@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from "@angular/http";
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 // Imports for loading & configuring the in-memory web api
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -9,7 +8,7 @@ import { ApiService } from './api.service';
 
 import { AppComponent } from './app.component';
 
-import { AttendeeService } from './attendee.service';
+import { AttendeeModule } from './attendee/attendee.module';
 import { MaterialModule } from './material/material.module';
 
 @NgModule({
@@ -21,9 +20,9 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(ApiService),
-    NgxDatatableModule
+    AttendeeModule
   ],
-  providers: [AttendeeService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

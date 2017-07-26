@@ -1,0 +1,27 @@
+<div fxFlexFill fxLayout="column" fxLayoutAlign="space-around">
+  <input type='text'
+    style='padding:8px;margin:15px auto;width:30%;'
+    placeholder='Type to filter the name column...'
+    (keyup)='updateFilter($event)'/>
+</div>
+<ngx-datatable
+    #table
+    class="material"
+    [columns]="columns"
+    [columnMode]="'force'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [rows]="attendees"
+    [limit]="10" (activate)="onActivate($event)">
+    <ngx-datatable-column name="Name" [width]="80"></ngx-datatable-column>
+    <ngx-datatable-column name="Photo" [width]="300"></ngx-datatable-column>
+    <ngx-datatable-column name="Average grade" prop="average_grade"></ngx-datatable-column>
+    <ngx-datatable-column name="Delivered homeworks" prop="delivered_homeworks"></ngx-datatable-column>
+    <ngx-datatable-column name="Missing homeworks" prop="missing_homeworks"></ngx-datatable-column>
+    <ngx-datatable-column name="Last update" prop="updated_at">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{ value | date }}
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
