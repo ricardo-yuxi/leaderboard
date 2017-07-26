@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 
 import { AttendeeModule } from './attendee/attendee.module';
 import { MaterialModule } from './material/material.module';
+import { AppRouting } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     HttpModule,
     InMemoryWebApiModule.forRoot(ApiService),
-    AttendeeModule
+    AttendeeModule,
+    AppRouting
   ],
   providers: [],
   bootstrap: [AppComponent]

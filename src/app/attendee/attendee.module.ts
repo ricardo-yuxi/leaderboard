@@ -4,12 +4,14 @@ import { CommonModule } from '@angular/common';
 import { AttendeesDatatableComponent } from './attendees-datatable/attendees-datatable.component';
 import { NgxDatatableModule } from "@swimlane/ngx-datatable/release";
 import { AttendeeService } from "app/attendee.service";
+import { AttendeeRouting } from './attendee.routing';
 
 @NgModule({
   imports: [
     CommonModule,
     NgxDatatableModule,
-    MaterialModule
+    MaterialModule,
+    AttendeeRouting
   ],
   declarations: [AttendeesDatatableComponent],
   providers: [AttendeeService],
