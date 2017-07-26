@@ -11,7 +11,7 @@ import { DatatableComponent } from '@swimlane/ngx-datatable/release';
 })
 export class AppComponent implements OnInit {
   title = 'Leaderboard';
-  rows: Attendee[] = [];
+  attendees: Attendee[] = [];
   temp: Attendee[] = [];
 
   columns = [
@@ -32,18 +32,18 @@ export class AppComponent implements OnInit {
 
   getAttendees() {
     this.attendeeService.getAttendees()
-      .subscribe(rows => {
+      .subscribe(attendees => {
         // cache out list
-        this.temp = [...rows];
+        this.temp = [...attendees];
         // push our inital complete list
-        this.rows = rows;
+        this.attendees = attendees;
 
         this.averageGrade();
       });
   }
 
   averageGrade() {
-    this.attendeeService.calculateAverageGrade(this.rows);
+    this.attendeeService.calculateAverageGrade(this.attendees);
   }
 
   updateFilter(event) {
@@ -54,8 +54,8 @@ export class AppComponent implements OnInit {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
-    // update the rows
-    this.rows = temp;
+    // update the attendees
+    this.attendees = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
