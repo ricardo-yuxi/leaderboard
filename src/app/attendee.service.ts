@@ -24,11 +24,22 @@ export class AttendeeService {
       .map(data => data.json().data as Attendee);
   }
 
-  create(attendee: Array<any>): Observable<Attendee> {
-    let body = {};
+  create(args: Array<any>): Observable<Attendee> {
+    // debugger;
+    let body = { 
+      name: args[0],
+      homework1: +args[1],
+      homework2: +args[2],
+      homework3: +args[3],
+      homework4: +args[4],
+      homework5: +args[5]
+    };
     return this.http
-      .post(this.attendeesUrl, JSON.stringify({ name: name }), { headers: this.headers })
-      .map(res => res.json().data as Attendee);
+      .post(this.attendeesUrl, JSON.stringify(body), { headers: this.headers })
+      .map((res) => {
+       console.log(res.json().data)
+       return res.json().data as Attendee
+      })
   }
 
   update(attendee: Attendee): Observable<Attendee> {

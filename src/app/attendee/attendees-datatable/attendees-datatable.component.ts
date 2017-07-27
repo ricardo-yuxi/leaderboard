@@ -74,11 +74,11 @@ export class AttendeesDatatableComponent implements OnInit {
     // let arr = theArgs.map(a => a.trim());
     console.log(theArgs);
 
-    // if (!name) { return; }
-    // this.attendeeService.create(arr)
-    //   .subscribe(attendee => {
-    //     this.attendees.push(attendee);
-    //   });
+    this.attendeeService.create(theArgs)
+      .subscribe(attendee => {
+        this.rows.push(attendee);
+        this.updateValues(attendee);
+      });
   }
 
   delete(value) {
