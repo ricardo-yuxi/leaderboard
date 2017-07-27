@@ -6,7 +6,6 @@ import { AttendeeDetailComponent } from './attendee-detail/attendee-detail.compo
 const attendeesRoutes: Routes = [
   { path: 'attendees', component: AttendeesDatatableComponent },
   { path: 'attendees/:id', component: AttendeeDetailComponent }
-
 ];
 
 @NgModule({

@@ -3,6 +3,9 @@ import { Attendee } from "app/attendee.model";
 import { DatatableComponent } from "@swimlane/ngx-datatable/release";
 import { AttendeeService } from "app/attendee.service";
 import { Router } from "@angular/router";
+import { DataSource } from '@angular/cdk';
+import { Observable } from 'rxjs/Rx'
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'attendees-datatable',
@@ -10,7 +13,9 @@ import { Router } from "@angular/router";
   styleUrls: ['./attendees-datatable.component.css']
 })
 export class AttendeesDatatableComponent implements OnInit {
-  attendees: Attendee[] = [];
+  // attendees: Attendee[] = [];
+  rows = [];
+  rows2 = [];
   temp: Attendee[] = [];
 
   columns = [
@@ -26,42 +31,79 @@ export class AttendeesDatatableComponent implements OnInit {
   constructor(
     private router: Router,
     private attendeeService: AttendeeService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getAttendees();
   }
 
-  gotoDetail(event) {
-    console.log(event.row);
-    this.router.navigate(['/attendees', event.row.id]);
-  }
-
   getAttendees() {
     this.attendeeService.getAttendees()
-      .subscribe(attendees => {
+      .subscribe(Response => {
+        Response.json().data.map((user) => {
+          let userUpdated = this.updateValues(user);
+          this.rows.push(userUpdated);
+        })
         // cache out list
-        this.temp = [...attendees];
+        // this.temp = [...attendees];
         // push our inital complete list
-        this.attendees = attendees;
-        this.averageGrade();
       });
   }
 
-  averageGrade() {
-    this.attendeeService.calculateAverageGrade(this.attendees);
+  updateValues(user) {
+    user.average_grade = this.getAverage(
+      user.homework1,
+      user.homework2,
+      user.homework3,
+      user.homework4,
+      user.homework5);
+
+    user.delivered_homeworks = 3;
+    user.missing_homeworks = 4;
+    user.updated_at = Date.now();
+    // user.color_name = (user.homeworks_missing !== 0) ? 'red' : 'green';
+
+    return user;
+  }
+
+  gotoDetail(event) {
+    this.router.navigate(['/attendees', event.row.id]);
+  }
+
+  add(...theArgs): void {
+    // let arr = theArgs.map(a => a.trim());
+    console.log(theArgs);
+
+    // if (!name) { return; }
+    // this.attendeeService.create(arr)
+    //   .subscribe(attendee => {
+    //     this.attendees.push(attendee);
+    //   });
+  }
+
+  delete(value) {
+    this.attendeeService.delete(value.id)
+      .subscribe(() => {
+        this.rows = this.rows.filter(a => a !== value);
+      });
+  }
+
+  getAverage(h1,h2,h3,h4,h5) {
+    // this.attendeeService.calculateAverageGrade(h1,h2,h3,h4,h5,h6);
+    return ((Number(h1) + Number(h2) + Number(h3) + Number(h4) + Number(h5)) / 5);
+
   }
 
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function(d) {
+    const temp = this.temp.filter(function (d) {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the attendees
-    this.attendees = temp;
+    this.rows = temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }

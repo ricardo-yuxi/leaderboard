@@ -14,7 +14,7 @@ import { AppRouting } from './app.routing';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

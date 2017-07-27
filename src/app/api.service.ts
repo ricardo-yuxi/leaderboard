@@ -2,55 +2,49 @@ import { InMemoryDbService } from 'angular-in-memory-web-api';
 export class ApiService implements InMemoryDbService {
   createDb() {
     const attendees = [
-      { 
-        id: 0,
-        name: 'Zero',
-        photo: '',
-        homeworks: [
-          { id: 1, name: 'first', note: 4 },
-          { id: 2, name: 'second', note: 3 },
-          { id: 3, name: 'third', note: 2 },
-          { id: 4, name: 'fourth', note: 3 },
-          { id: 5, name: 'fifth', note: 5 }
-        ],
-        average_grade: null,
-        delivered_homeworks: 5,
-        missing_homeworks: 0,
-        updated_at: '2017-07-23 16:15:09' 
-      },
-      { 
+      {
         id: 1,
-        name: 'Mr. Nice',
+        name: 'Juan',
         photo: '',
-        homeworks: [
-          { id: 1, name: 'first', note: 4 },
-          { id: 2, name: 'second', note: 3 },
-          { id: 3, name: 'third', note: 2 },
-          { id: 4, name: 'fourth', note: 3 },
-          { id: 5, name: 'fifth', note: 5 }
-        ],
-        average_grade: null,
-        delivered_homeworks: 4,
-        missing_homeworks: 1,
-        updated_at: '2017-07-23 16:15:09' 
-      },
-      { 
-        id: 2,
-        name: 'Logan',
-        photo: '',
-        homeworks: [
-          { id: 1, name: 'first', note: 4 },
-          { id: 2, name: 'second', note: 3 },
-          { id: 3, name: 'third', note: 2 },
-          { id: 4, name: 'fourth', note: 3 },
-          { id: 5, name: 'fifth', note: 5 }
-        ],
+        homework1: 4,
+        homework2: 3,
+        homework3: 4,
+        homework4: 5,
+        homework5: 2,
         average_grade: null,
         delivered_homeworks: 5,
         missing_homeworks: 0,
-        updated_at: '2017-07-23 16:15:09' 
-      }
+        updated_at: '2017-07-23 16:15:09'
+      },
+      {
+        id: 2,
+        name: 'Mateo',
+        photo: '',
+        homework1: 3,
+        homework2: 5,
+        homework3: 3,
+        homework4: 2,
+        homework5: 5,
+        average_grade: null,
+        delivered_homeworks: 5,
+        missing_homeworks: 0,
+        updated_at: '2017-07-23 16:15:09'
+      },
+      {
+        id: 1,
+        name: 'Laura',
+        photo: '',
+        homework1: 5,
+        homework2: 2,
+        homework3: 4,
+        homework4: 5,
+        homework5: 4,
+        average_grade: null,
+        delivered_homeworks: 5,
+        missing_homeworks: 0,
+        updated_at: '2017-07-23 16:15:09'
+      },
     ];
-    return {attendees};
+    return { attendees };
   }
 }

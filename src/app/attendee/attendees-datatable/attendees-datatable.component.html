@@ -1,6 +1,23 @@
-<div fxFlexFill fxLayout="column" fxLayoutAlign="space-around">
+<div fxFlexFill fxLayout="row" fxLayoutAlign="space-around">
+  <div>
+    <label>Name</label> <input #attendeeName />
+    <label>Score 1</label> <input #score1 />
+    <label>Score 2</label> <input #score2 />
+    <label>Score 3</label> <input #score3 />
+    <label>Score 4</label> <input #score4 />
+    <label>Score 5</label> <input #score5 />
+    <button md-raised-button
+     (click)="add(attendeeName.value,
+                  score1.value,
+                  score2.value,
+                  score3.value,
+                  score4.value,
+                  score5.value);
+                  attendeeName.value=''">
+      <md-icon>add</md-icon>
+    </button>
+  </div>
   <input type='text'
-    style='padding:8px;margin:15px auto;width:30%;'
     placeholder='Type to filter the name column...'
     (keyup)='updateFilter($event)'/>
 </div>
@@ -12,7 +29,7 @@
     [headerHeight]="50"
     [footerHeight]="50"
     [rowHeight]="'auto'"
-    [rows]="attendees"
+    [rows]="rows"
     [limit]="10"
     title="Click to show Attendee"
     (activate)="gotoDetail($event)">
@@ -24,6 +41,11 @@
     <ngx-datatable-column name="Last update" prop="updated_at">
       <ng-template let-value="value" ngx-datatable-cell-template>
         {{ value | date }}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Delete">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        <button md-raised-button (click)="delete(row); $event.stopPropagation()">x</button>
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>

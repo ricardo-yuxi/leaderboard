@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MdCardModule,
   MdButtonModule,
-  MdCheckboxModule
+  MdIconModule
 } from '@angular/material';
 
 @NgModule({
@@ -15,14 +15,15 @@ import {
     FlexLayoutModule,
     BrowserAnimationsModule,
     MdCardModule,
-    MdButtonModule
+    MdButtonModule,
+    MdIconModule
   ],
   exports: [
     FlexLayoutModule,
     BrowserAnimationsModule,
     MdCardModule,
     MdButtonModule,
-    MdCheckboxModule
+    MdIconModule
   ],
   declarations: []
 })

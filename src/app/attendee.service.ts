@@ -2,22 +2,19 @@ import { Injectable } from '@angular/core';
 import { Headers, Http } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import { Attendee } from './attendee.model';
-import { Homework } from './homework.model';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 @Injectable()
 export class AttendeeService {
   private attendeesUrl = 'api/attendees';
-  private headers = new Headers({'Content-Type': 'application/json'});
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
   constructor(private http: Http) { }
 
-  getAttendees(): Observable<Attendee[]> {
+  getAttendees() {
     return this.http
-      .get(this.attendeesUrl)
-      .map(data => data.json().data as Attendee[])
-      .do(data => console.log(data));
+      .get(this.attendeesUrl);
   }
 
   getAttendee(id: number): Observable<Attendee> {
@@ -27,24 +24,26 @@ export class AttendeeService {
       .map(data => data.json().data as Attendee);
   }
 
+  create(attendee: Array<any>): Observable<Attendee> {
+    let body = {};
+    return this.http
+      .post(this.attendeesUrl, JSON.stringify({ name: name }), { headers: this.headers })
+      .map(res => res.json().data as Attendee);
+  }
+
   update(attendee: Attendee): Observable<Attendee> {
     const url = `${this.attendeesUrl}/${attendee.id}`;
     let body = JSON.stringify(attendee);
     return this.http
-      .put(url, body, {headers: this.headers})
+      .put(url, body, { headers: this.headers })
       .map(() => attendee);
   }
 
-  calculateAverageGrade(attendees: Attendee[]) {
-    attendees.map(attendee => {
-      let sum = 0;
-      attendee.homeworks.map(homework => {
-        let note = homework.note;
-        sum += +note;
-      });
-      let average = (sum / attendee.homeworks.length);
-      attendee.average_grade = average;
-    });
+  delete(id: number): Observable<Attendee> {
+    const url = `${this.attendeesUrl}/${id}`;
+    return this.http
+      .delete(url, { headers: this.headers })
+      .map(() => null);
   }
 
 }
