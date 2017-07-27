@@ -1,0 +1,21 @@
+<label>Name</label> <input #attendeeName />
+<label>Score 1</label> <input #score1 />
+<label>Score 2</label> <input #score2 />
+<label>Score 3</label> <input #score3 />
+<label>Score 4</label> <input #score4 />
+<label>Score 5</label> <input #score5 />
+<button md-raised-button
+  (click)="add(attendeeName.value,
+              score1.value,
+              score2.value,
+              score3.value,
+              score4.value,
+              score5.value);
+              attendeeName.value='';
+              score1.value='';
+              score2.value='';
+              score3.value='';
+              score4.value='';
+              score5.value=''">
+  <md-icon>add</md-icon>
+</button>

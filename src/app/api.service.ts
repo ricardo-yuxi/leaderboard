@@ -31,7 +31,7 @@ export class ApiService implements InMemoryDbService {
         updated_at: '2017-07-23 16:15:09'
       },
       {
-        id: 1,
+        id: 3,
         name: 'Laura',
         photo: '',
         homework1: 5,

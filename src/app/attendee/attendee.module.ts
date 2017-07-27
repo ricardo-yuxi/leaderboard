@@ -7,6 +7,7 @@ import { AttendeeService } from "app/attendee.service";
 import { AttendeeRouting } from './attendee.routing';
 import { AttendeeDetailComponent } from './attendee-detail/attendee-detail.component';
 import { FormsModule } from "@angular/forms";
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { FormsModule } from "@angular/forms";
   ],
   declarations: [
     AttendeesDatatableComponent,
-    AttendeeDetailComponent
+    AttendeeDetailComponent,
+    FormComponent
   ],
   providers: [AttendeeService],
   exports: [AttendeesDatatableComponent]

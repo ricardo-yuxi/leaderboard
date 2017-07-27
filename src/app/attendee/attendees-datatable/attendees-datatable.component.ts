@@ -71,15 +71,6 @@ export class AttendeesDatatableComponent implements OnInit {
     this.router.navigate(['/attendees', event.row.id]);
   }
 
-  add(...theArgs): void {
-    let arr = theArgs.map(a => a.trim());
-    this.attendeeService.create(arr)
-      .subscribe(attendee => {
-        this.rows.push(attendee);
-        this.updateValues(attendee);
-      });
-  }
-
   delete(value) {
     this.attendeeService.delete(value.id)
       .subscribe(() => {
