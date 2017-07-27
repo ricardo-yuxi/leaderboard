@@ -71,10 +71,8 @@ export class AttendeesDatatableComponent implements OnInit {
   }
 
   add(...theArgs): void {
-    // let arr = theArgs.map(a => a.trim());
-    console.log(theArgs);
-
-    this.attendeeService.create(theArgs)
+    let arr = theArgs.map(a => a.trim());
+    this.attendeeService.create(arr)
       .subscribe(attendee => {
         this.rows.push(attendee);
         this.updateValues(attendee);
