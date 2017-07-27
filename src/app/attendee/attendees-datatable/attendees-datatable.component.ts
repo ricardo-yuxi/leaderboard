@@ -43,6 +43,7 @@ export class AttendeesDatatableComponent implements OnInit {
         Response.json().data.map((user) => {
           let userUpdated = this.updateValues(user);
           this.rows.push(userUpdated);
+          this.rows2.push(userUpdated);
         })
         // cache out list
         // this.temp = [...attendees];
@@ -93,15 +94,16 @@ export class AttendeesDatatableComponent implements OnInit {
   }
 
   updateFilter(event) {
+    this.temp = []
     const val = event.target.value.toLowerCase();
 
     // filter our data
-    const temp = this.temp.filter(function (d) {
+    this.temp = this.rows2.filter(function (d) {
       return d.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the attendees
-    this.rows = temp;
+    this.rows = this.temp;
     // Whenever the filter changes, always go back to the first page
     this.table.offset = 0;
   }
